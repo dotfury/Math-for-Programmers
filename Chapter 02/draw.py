@@ -72,7 +72,8 @@ def to_polar(cartesian_vector):
   angle = atan2(cartesian_vector[1], cartesian_vector[0])
   return (len, angle)
 
-print(to_polar((1, -1)))
+print(to_polar((3, 4)))
+print(to_polar((4, 3)))
 
 def to_rad(degrees):
   return (degrees * pi) / 180
