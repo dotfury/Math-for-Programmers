@@ -39,4 +39,4 @@ def cross(u, v):
   vx, vy, vz = v
   return (uy * vz - uz * vy, uz * vx - ux * vz, ux * vy - uy * vx)
 
-print(cross((1,0,1), (-1,0,0)))
+print(cross((0,0,1), (2,2,2)))
