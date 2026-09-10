@@ -1,5 +1,6 @@
 from teapot import load_triangles
 from draw_model import draw_model
+from vectors import scale, add
 
 ####################################################################
 #### this code takes a snapshot to reproduce the exact figure 
@@ -11,4 +12,13 @@ if '--snapshot' in sys.argv:
     camera.default_camera = camera.Camera('fig_4.4_draw_teapot',[0])
 ####################################################################
 
-draw_model(load_triangles())
+def scale2(v):
+  return scale(2.0, v)
+
+def translate_left(v):
+  return add((-1, 0, 0), v)
+
+original = load_triangles()
+modified = [[translate_left(scale2(x)) for x in tri] for tri in original]
+
+draw_model(modified)

@@ -7,11 +7,12 @@ import camera
 from vectors import *
 from math import *
 from transforms import *
+import matplotlib.pyplot as plt
 
 def normal(face):
     return(cross(subtract(face[1], face[0]), subtract(face[2], face[0])))
 
-blues = matplotlib.cm.get_cmap('Blues')
+blues = plt.get_cmap('Blues')
 
 def shade(face,color_map=blues,light=(1,2,3)):
     return color_map(1 - dot(unit(normal(face)), unit(light)))
