@@ -12,13 +12,38 @@ if '--snapshot' in sys.argv:
     camera.default_camera = camera.Camera('fig_4.4_draw_teapot',[0])
 ####################################################################
 
-def scale2(v):
-  return scale(2.0, v)
+def scale_by(scalar):
+  def new_function(input):
+    return scale(scalar, input)
+  return new_function
 
-def translate_left(v):
-  return add((-1, 0, 0), v)
+def translate_by(vector):
+  def new_function(input):
+    return add(vector, input)
+  return new_function
+
+scale_2 = scale_by(2)
+translate_left_1 = translate_by((-1, 0, 0))
+
+def compose(f1, f2):
+  def new_function(input):
+    return f1(f2(input))
+  return new_function
+
+def polygon_map(transformation, polygons):
+  return [[transformation(vertex) for vertex in triangle] for triangle in polygons]
+
+scale_and_translate = compose(scale_2, translate_left_1)
+translate_20 = translate_by((0, 0, -20))
+scale_half = scale_by(0.5)
+scale_negative = scale_by(-1)
+
+scale_small = scale_by(0.4)
+scale_large = scale_by(1.5)
+
+scale_and_scale = compose(scale_small, scale_large)
 
 original = load_triangles()
-modified = [[translate_left(scale2(x)) for x in tri] for tri in original]
+modified = polygon_map(scale_and_scale, original)
 
 draw_model(modified)
