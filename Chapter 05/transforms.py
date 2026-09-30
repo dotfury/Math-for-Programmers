@@ -90,3 +90,18 @@ def linear_combination(scalars,*vectors):
 
 def multiply_matrix_vector(matrix, vector):
     return linear_combination(vector, *zip(*matrix))
+
+def matrix_multiply(a,b):
+  return tuple(
+    tuple(dot(row,col) for col in zip(*b))
+    for row in a
+  )
+
+# a = ((1,1,0),(1,0,1),(1,-1,1))
+# b = ((0,2,1),(0,1,0),(1,0,-1))
+# print(len((1,0,1)))
+
+
+a = ((1,1),(1,0),(1,-1))
+b = ((0,2,1,2,3),(0,1,0,2,1),(1,0,-1,0,0),(1,0,-1,1,1))
+print(matrix_multiply(a, b))
